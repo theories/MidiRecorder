@@ -14,6 +14,9 @@
 		E430D53E1BA13B3100DCA2FD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E430D53D1BA13B3100DCA2FD /* Images.xcassets */; };
 		E430D5411BA13B3100DCA2FD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E430D53F1BA13B3100DCA2FD /* LaunchScreen.xib */; };
 		E430D54D1BA13B3100DCA2FD /* MidiRecorderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E430D54C1BA13B3100DCA2FD /* MidiRecorderTests.m */; };
+		E430D5581BA13C5600DCA2FD /* SoundRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = E430D5571BA13C5600DCA2FD /* SoundRecorder.m */; };
+		E430D55A1BA13CC400DCA2FD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E430D5591BA13CC400DCA2FD /* AudioToolbox.framework */; };
+		E430D55C1BA13EE600DCA2FD /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E430D55B1BA13EE600DCA2FD /* CoreAudio.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,11 @@
 		E430D5461BA13B3100DCA2FD /* MidiRecorderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MidiRecorderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E430D54B1BA13B3100DCA2FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E430D54C1BA13B3100DCA2FD /* MidiRecorderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MidiRecorderTests.m; sourceTree = "<group>"; };
+		E430D5561BA13BA500DCA2FD /* SoundRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundRecorder.h; sourceTree = "<group>"; };
+		E430D5571BA13C5600DCA2FD /* SoundRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundRecorder.m; sourceTree = "<group>"; };
+		E430D5591BA13CC400DCA2FD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		E430D55B1BA13EE600DCA2FD /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		E430D55D1BA13F0100DCA2FD /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +55,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E430D55C1BA13EE600DCA2FD /* CoreAudio.framework in Frameworks */,
+				E430D55A1BA13CC400DCA2FD /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +73,9 @@
 		E430D5241BA13B3100DCA2FD = {
 			isa = PBXGroup;
 			children = (
+				E430D55D1BA13F0100DCA2FD /* CoreAudioKit.framework */,
+				E430D55B1BA13EE600DCA2FD /* CoreAudio.framework */,
+				E430D5591BA13CC400DCA2FD /* AudioToolbox.framework */,
 				E430D52F1BA13B3100DCA2FD /* MidiRecorder */,
 				E430D5491BA13B3100DCA2FD /* MidiRecorderTests */,
 				E430D52E1BA13B3100DCA2FD /* Products */,
@@ -89,6 +102,8 @@
 				E430D53D1BA13B3100DCA2FD /* Images.xcassets */,
 				E430D53F1BA13B3100DCA2FD /* LaunchScreen.xib */,
 				E430D5301BA13B3100DCA2FD /* Supporting Files */,
+				E430D5561BA13BA500DCA2FD /* SoundRecorder.h */,
+				E430D5571BA13C5600DCA2FD /* SoundRecorder.m */,
 			);
 			path = MidiRecorder;
 			sourceTree = "<group>";
@@ -220,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E430D5391BA13B3100DCA2FD /* ViewController.m in Sources */,
+				E430D5581BA13C5600DCA2FD /* SoundRecorder.m in Sources */,
 				E430D5361BA13B3100DCA2FD /* AppDelegate.m in Sources */,
 				E430D5331BA13B3100DCA2FD /* main.m in Sources */,
 			);
