@@ -78,12 +78,9 @@ static void MyAQInputCallback(void *inUserData, AudioQueueRef inQueue,
 {
     if (self = [super init]) {
     
-    
-    }
-    
-    MyRecorder recorder = {0};
-    AudioStreamBasicDescription recordFormat = {0};
-    memset(&recordFormat, 0, sizeof(recordFormat));
+        MyRecorder recorder = {0};
+        AudioStreamBasicDescription recordFormat = {0};
+        memset(&recordFormat, 0, sizeof(recordFormat));
     
     // Configure the output data format to be AAC
     recordFormat.mFormatID = kAudioFormatMPEG4AAC;
@@ -96,6 +93,7 @@ static void MyAQInputCallback(void *inUserData, AudioQueueRef inQueue,
     
 #pragma mark TODO get the sample rate from the AudioSession!!!!
     //MyGetDefaultInputDeviceSampleRate(&recordFormat.mSampleRate);
+    recordFormat.mSampleRate = 44100.0;
     
     // ProTip: Use the AudioFormat API to trivialize ASBD creation.
     //         input: atleast the mFormatID, however, at this point we already have
@@ -171,8 +169,11 @@ static void MyAQInputCallback(void *inUserData, AudioQueueRef inQueue,
     // so reapply it to the file now
     [self copyEncoderCookieToFile:queue theFile:recorder.recordFile ];
   
-    AudioQueueDispose(queue, TRUE);
-    AudioFileClose(recorder.recordFile);
+    
+        AudioQueueDispose(queue, TRUE);
+        AudioFileClose(recorder.recordFile);
+    
+    }
     
     return self;
 

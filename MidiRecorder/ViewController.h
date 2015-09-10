@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SoundRecorder.h"
 
 @interface ViewController : UIViewController
 
