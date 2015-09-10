@@ -1,0 +1,433 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E430D5331BA13B3100DCA2FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E430D5321BA13B3100DCA2FD /* main.m */; };
+		E430D5361BA13B3100DCA2FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E430D5351BA13B3100DCA2FD /* AppDelegate.m */; };
+		E430D5391BA13B3100DCA2FD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430D5381BA13B3100DCA2FD /* ViewController.m */; };
+		E430D53C1BA13B3100DCA2FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E430D53A1BA13B3100DCA2FD /* Main.storyboard */; };
+		E430D53E1BA13B3100DCA2FD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E430D53D1BA13B3100DCA2FD /* Images.xcassets */; };
+		E430D5411BA13B3100DCA2FD /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E430D53F1BA13B3100DCA2FD /* LaunchScreen.xib */; };
+		E430D54D1BA13B3100DCA2FD /* MidiRecorderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E430D54C1BA13B3100DCA2FD /* MidiRecorderTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E430D5471BA13B3100DCA2FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E430D5251BA13B3100DCA2FD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E430D52C1BA13B3100DCA2FD;
+			remoteInfo = MidiRecorder;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E430D52D1BA13B3100DCA2FD /* MidiRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MidiRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E430D5311BA13B3100DCA2FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E430D5321BA13B3100DCA2FD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E430D5341BA13B3100DCA2FD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E430D5351BA13B3100DCA2FD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E430D5371BA13B3100DCA2FD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E430D5381BA13B3100DCA2FD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E430D53B1BA13B3100DCA2FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E430D53D1BA13B3100DCA2FD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E430D5401BA13B3100DCA2FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E430D5461BA13B3100DCA2FD /* MidiRecorderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MidiRecorderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E430D54B1BA13B3100DCA2FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E430D54C1BA13B3100DCA2FD /* MidiRecorderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MidiRecorderTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E430D52A1BA13B3100DCA2FD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E430D5431BA13B3100DCA2FD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E430D5241BA13B3100DCA2FD = {
+			isa = PBXGroup;
+			children = (
+				E430D52F1BA13B3100DCA2FD /* MidiRecorder */,
+				E430D5491BA13B3100DCA2FD /* MidiRecorderTests */,
+				E430D52E1BA13B3100DCA2FD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E430D52E1BA13B3100DCA2FD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E430D52D1BA13B3100DCA2FD /* MidiRecorder.app */,
+				E430D5461BA13B3100DCA2FD /* MidiRecorderTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E430D52F1BA13B3100DCA2FD /* MidiRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				E430D5341BA13B3100DCA2FD /* AppDelegate.h */,
+				E430D5351BA13B3100DCA2FD /* AppDelegate.m */,
+				E430D5371BA13B3100DCA2FD /* ViewController.h */,
+				E430D5381BA13B3100DCA2FD /* ViewController.m */,
+				E430D53A1BA13B3100DCA2FD /* Main.storyboard */,
+				E430D53D1BA13B3100DCA2FD /* Images.xcassets */,
+				E430D53F1BA13B3100DCA2FD /* LaunchScreen.xib */,
+				E430D5301BA13B3100DCA2FD /* Supporting Files */,
+			);
+			path = MidiRecorder;
+			sourceTree = "<group>";
+		};
+		E430D5301BA13B3100DCA2FD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E430D5311BA13B3100DCA2FD /* Info.plist */,
+				E430D5321BA13B3100DCA2FD /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E430D5491BA13B3100DCA2FD /* MidiRecorderTests */ = {
+			isa = PBXGroup;
+			children = (
+				E430D54C1BA13B3100DCA2FD /* MidiRecorderTests.m */,
+				E430D54A1BA13B3100DCA2FD /* Supporting Files */,
+			);
+			path = MidiRecorderTests;
+			sourceTree = "<group>";
+		};
+		E430D54A1BA13B3100DCA2FD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E430D54B1BA13B3100DCA2FD /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E430D52C1BA13B3100DCA2FD /* MidiRecorder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E430D5501BA13B3100DCA2FD /* Build configuration list for PBXNativeTarget "MidiRecorder" */;
+			buildPhases = (
+				E430D5291BA13B3100DCA2FD /* Sources */,
+				E430D52A1BA13B3100DCA2FD /* Frameworks */,
+				E430D52B1BA13B3100DCA2FD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MidiRecorder;
+			productName = MidiRecorder;
+			productReference = E430D52D1BA13B3100DCA2FD /* MidiRecorder.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E430D5451BA13B3100DCA2FD /* MidiRecorderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E430D5531BA13B3100DCA2FD /* Build configuration list for PBXNativeTarget "MidiRecorderTests" */;
+			buildPhases = (
+				E430D5421BA13B3100DCA2FD /* Sources */,
+				E430D5431BA13B3100DCA2FD /* Frameworks */,
+				E430D5441BA13B3100DCA2FD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E430D5481BA13B3100DCA2FD /* PBXTargetDependency */,
+			);
+			name = MidiRecorderTests;
+			productName = MidiRecorderTests;
+			productReference = E430D5461BA13B3100DCA2FD /* MidiRecorderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E430D5251BA13B3100DCA2FD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "Thierry Sansaricq";
+				TargetAttributes = {
+					E430D52C1BA13B3100DCA2FD = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					E430D5451BA13B3100DCA2FD = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = E430D52C1BA13B3100DCA2FD;
+					};
+				};
+			};
+			buildConfigurationList = E430D5281BA13B3100DCA2FD /* Build configuration list for PBXProject "MidiRecorder" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E430D5241BA13B3100DCA2FD;
+			productRefGroup = E430D52E1BA13B3100DCA2FD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E430D52C1BA13B3100DCA2FD /* MidiRecorder */,
+				E430D5451BA13B3100DCA2FD /* MidiRecorderTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E430D52B1BA13B3100DCA2FD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E430D53C1BA13B3100DCA2FD /* Main.storyboard in Resources */,
+				E430D5411BA13B3100DCA2FD /* LaunchScreen.xib in Resources */,
+				E430D53E1BA13B3100DCA2FD /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E430D5441BA13B3100DCA2FD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E430D5291BA13B3100DCA2FD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E430D5391BA13B3100DCA2FD /* ViewController.m in Sources */,
+				E430D5361BA13B3100DCA2FD /* AppDelegate.m in Sources */,
+				E430D5331BA13B3100DCA2FD /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E430D5421BA13B3100DCA2FD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E430D54D1BA13B3100DCA2FD /* MidiRecorderTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E430D5481BA13B3100DCA2FD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E430D52C1BA13B3100DCA2FD /* MidiRecorder */;
+			targetProxy = E430D5471BA13B3100DCA2FD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E430D53A1BA13B3100DCA2FD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E430D53B1BA13B3100DCA2FD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E430D53F1BA13B3100DCA2FD /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E430D5401BA13B3100DCA2FD /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E430D54E1BA13B3100DCA2FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E430D54F1BA13B3100DCA2FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E430D5511BA13B3100DCA2FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MidiRecorder/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E430D5521BA13B3100DCA2FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MidiRecorder/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E430D5541BA13B3100DCA2FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MidiRecorderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MidiRecorder.app/MidiRecorder";
+			};
+			name = Debug;
+		};
+		E430D5551BA13B3100DCA2FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MidiRecorderTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MidiRecorder.app/MidiRecorder";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E430D5281BA13B3100DCA2FD /* Build configuration list for PBXProject "MidiRecorder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E430D54E1BA13B3100DCA2FD /* Debug */,
+				E430D54F1BA13B3100DCA2FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E430D5501BA13B3100DCA2FD /* Build configuration list for PBXNativeTarget "MidiRecorder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E430D5511BA13B3100DCA2FD /* Debug */,
+				E430D5521BA13B3100DCA2FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E430D5531BA13B3100DCA2FD /* Build configuration list for PBXNativeTarget "MidiRecorderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E430D5541BA13B3100DCA2FD /* Debug */,
+				E430D5551BA13B3100DCA2FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E430D5251BA13B3100DCA2FD /* Project object */;
+}
