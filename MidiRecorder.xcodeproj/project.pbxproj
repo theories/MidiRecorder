@@ -17,6 +17,7 @@
 		E430D5581BA13C5600DCA2FD /* SoundRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = E430D5571BA13C5600DCA2FD /* SoundRecorder.m */; };
 		E430D55A1BA13CC400DCA2FD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E430D5591BA13CC400DCA2FD /* AudioToolbox.framework */; };
 		E430D55C1BA13EE600DCA2FD /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E430D55B1BA13EE600DCA2FD /* CoreAudio.framework */; };
+		E4DBC6C71BA3137B0091B3FD /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4DBC6C61BA3137B0091B3FD /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		E430D5591BA13CC400DCA2FD /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		E430D55B1BA13EE600DCA2FD /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		E430D55D1BA13F0100DCA2FD /* CoreAudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioKit.framework; path = System/Library/Frameworks/CoreAudioKit.framework; sourceTree = SDKROOT; };
+		E4DBC6C61BA3137B0091B3FD /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4DBC6C71BA3137B0091B3FD /* Accelerate.framework in Frameworks */,
 				E430D55C1BA13EE600DCA2FD /* CoreAudio.framework in Frameworks */,
 				E430D55A1BA13CC400DCA2FD /* AudioToolbox.framework in Frameworks */,
 			);
@@ -73,6 +76,7 @@
 		E430D5241BA13B3100DCA2FD = {
 			isa = PBXGroup;
 			children = (
+				E4DBC6C61BA3137B0091B3FD /* Accelerate.framework */,
 				E430D55D1BA13F0100DCA2FD /* CoreAudioKit.framework */,
 				E430D55B1BA13EE600DCA2FD /* CoreAudio.framework */,
 				E430D5591BA13CC400DCA2FD /* AudioToolbox.framework */,
@@ -434,6 +438,7 @@
 				E430D5521BA13B3100DCA2FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E430D5531BA13B3100DCA2FD /* Build configuration list for PBXNativeTarget "MidiRecorderTests" */ = {
 			isa = XCConfigurationList;
@@ -442,6 +447,7 @@
 				E430D5551BA13B3100DCA2FD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

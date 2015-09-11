@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+@interface ViewController () <SoundRecorderDelegate>
 
 @end
 
@@ -18,6 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     SoundRecorder *recorder = [[SoundRecorder alloc] init];
+    recorder.delegate = self;
     
 }
 
