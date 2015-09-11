@@ -126,8 +126,14 @@ static void MyAQInputCallback(void *inUserData, AudioQueueRef inQueue,
     CheckError(AudioQueueGetProperty(queue, kAudioConverterCurrentOutputStreamDescription,
                                      &recordFormat, &size), "couldn't get queue's format");
     
+        
+    NSArray *searchPaths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath_ = [searchPaths objectAtIndex: 0];
+    NSString *pathToSave = [documentPath_ stringByAppendingPathComponent:@"output.caf"];
+
+        
     // create the audio file
-    CFURLRef myFileURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, CFSTR("./output.caf"), kCFURLPOSIXPathStyle, false);
+    CFURLRef myFileURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (__bridge CFStringRef)pathToSave, kCFURLPOSIXPathStyle, false);
     CFShow (myFileURL);
     CheckError(AudioFileCreateWithURL(myFileURL, kAudioFileCAFType, &recordFormat,
                                       kAudioFileFlags_EraseFile, &recorder.recordFile), "AudioFileCreateWithURL failed");
