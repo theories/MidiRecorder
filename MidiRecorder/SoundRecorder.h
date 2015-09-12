@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Thierry Sansaricq. All rights reserved.
 //
 
+
+
 #import <Foundation/Foundation.h>
 #include <AudioToolbox/AudioToolbox.h>
 #include <Availability.h>
@@ -20,6 +22,13 @@
 #import <AudioUnit/AudioUnitProperties.h>
 #import <Accelerate/Accelerate.h>
 //#include <CoreAudio/CoreAudioTypes.h>
+
+
+typedef struct MyRecorder {
+    AudioFileID					recordFile; // reference to your output file
+    SInt64						recordPacket; // current packet index in output file
+    Boolean						running; // recording state
+} MyRecorder;
 
 
 
@@ -37,6 +46,12 @@
 
 @property (weak) id<SoundRecorderDelegate> delegate;
 
-@property (readwrite) Float64       graphSampleRate;
+@property (readwrite) Float64              graphSampleRate;
+@property (readwrite) struct MyRecorder    recorder;
+
+
+- (void)handleInterruption:(NSNotification *)notification;
+- (void)handleRouteChange:(NSNotification *)notification;
+- (void)handleMediaServicesReset:(NSNotification *)notification;
 
 @end

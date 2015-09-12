@@ -13,11 +13,6 @@
 
 #define kNumberRecordBuffers	3
 
-typedef struct MyRecorder {
-    AudioFileID					recordFile; // reference to your output file
-    SInt64						recordPacket; // current packet index in output file
-    Boolean						running; // recording state
-} MyRecorder;
 
 
 
@@ -74,6 +69,11 @@ static void MyAQInputCallback(void *inUserData, AudioQueueRef inQueue,
 
 @implementation SoundRecorder
 
+//MyRecorder  _recorder;
+AudioQueueRef _queue;
+
+@synthesize recorder            = _recorder;
+
 @synthesize graphSampleRate     = _graphSampleRate;
 
 - (instancetype)init
@@ -85,7 +85,10 @@ static void MyAQInputCallback(void *inUserData, AudioQueueRef inQueue,
             return nil;
         }
     
-        MyRecorder recorder = {0};
+        //MyRecorder recorder = {0};
+        //MyRecorder theRecorder = {0};// = _recorder;
+        //theRecorder = {0};
+        memset(&_recorder, 0, sizeof(_recorder));
         AudioStreamBasicDescription recordFormat = {0};
         memset(&recordFormat, 0, sizeof(recordFormat));
     
@@ -98,24 +101,24 @@ static void MyAQInputCallback(void *inUserData, AudioQueueRef inQueue,
     
 
     
-#pragma mark TODO get the sample rate from the AudioSession!!!!
-    //MyGetDefaultInputDeviceSampleRate(&recordFormat.mSampleRate);
+    #pragma mark TODO get the sample rate from the AudioSession!!!!
+        //MyGetDefaultInputDeviceSampleRate(&recordFormat.mSampleRate);
         recordFormat.mSampleRate = self.graphSampleRate;//44100.0;
     
-    // ProTip: Use the AudioFormat API to trivialize ASBD creation.
-    //         input: atleast the mFormatID, however, at this point we already have
-    //                mSampleRate, mFormatID, and mChannelsPerFrame
-    //         output: the remainder of the ASBD will be filled out as much as possible
-    //                 given the information known about the format
-    UInt32 propSize = sizeof(recordFormat);
-    CheckError(AudioFormatGetProperty(kAudioFormatProperty_FormatInfo, 0, NULL,
+        // ProTip: Use the AudioFormat API to trivialize ASBD creation.
+        //         input: atleast the mFormatID, however, at this point we already have
+        //                mSampleRate, mFormatID, and mChannelsPerFrame
+        //         output: the remainder of the ASBD will be filled out as much as possible
+        //                 given the information known about the format
+        UInt32 propSize = sizeof(recordFormat);
+        CheckError(AudioFormatGetProperty(kAudioFormatProperty_FormatInfo, 0, NULL,
                                       &propSize, &recordFormat), "AudioFormatGetProperty failed");
     
-    // create a input (recording) queue
-    AudioQueueRef queue = {0};
-    CheckError(AudioQueueNewInput(&recordFormat, // ASBD
+        // create a input (recording) queue
+        AudioQueueRef queue = {0};
+        CheckError(AudioQueueNewInput(&recordFormat, // ASBD
                                   MyAQInputCallback, // Callback
-                                  &recorder, // user data
+                                  &_recorder, // user data
                                   NULL, // run loop
                                   NULL, // run loop mode
                                   0, // flags (always 0)
@@ -123,74 +126,82 @@ static void MyAQInputCallback(void *inUserData, AudioQueueRef inQueue,
                                   &queue),
                "AudioQueueNewInput failed");
     
-    // since the queue is now initilized, we ask it's Audio Converter object
-    // for the ASBD it has configured itself with. The file may require a more
-    // specific stream description than was necessary to create the audio queue.
-    //
-    // for example: certain fields in an ASBD cannot possibly be known until it's
-    // codec is instantiated (in this case, by the AudioQueue's Audio Converter object)
-    UInt32 size = sizeof(recordFormat);
-    CheckError(AudioQueueGetProperty(queue, kAudioConverterCurrentOutputStreamDescription,
+        // since the queue is now initilized, we ask it's Audio Converter object
+        // for the ASBD it has configured itself with. The file may require a more
+        // specific stream description than was necessary to create the     audio queue.
+        //
+        // for example: certain fields in an ASBD cannot possibly be known until it's
+        // codec is instantiated (in this case, by the AudioQueue's Audio Converter object)
+        UInt32 size = sizeof(recordFormat);
+        CheckError(AudioQueueGetProperty(queue, kAudioConverterCurrentOutputStreamDescription,
                                      &recordFormat, &size), "couldn't get queue's format");
     
         
-    NSArray *searchPaths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentPath_ = [searchPaths objectAtIndex: 0];
-    NSString *pathToSave = [documentPath_ stringByAppendingPathComponent:@"output.caf"];
+        NSArray *searchPaths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentPath_ = [searchPaths objectAtIndex: 0];
+        NSString *pathToSave = [documentPath_ stringByAppendingPathComponent:@"output.caf"];
 
         
     // create the audio file
-    CFURLRef myFileURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (__bridge CFStringRef)pathToSave, kCFURLPOSIXPathStyle, false);
-    CFShow (myFileURL);
-    CheckError(AudioFileCreateWithURL(myFileURL, kAudioFileCAFType, &recordFormat,
-                                      kAudioFileFlags_EraseFile, &recorder.recordFile), "AudioFileCreateWithURL failed");
-    CFRelease(myFileURL);
+        CFURLRef myFileURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (__bridge CFStringRef)pathToSave, kCFURLPOSIXPathStyle, false);
+        CFShow (myFileURL);
+        CheckError(AudioFileCreateWithURL(myFileURL, kAudioFileCAFType, &recordFormat,
+                                      kAudioFileFlags_EraseFile, &_recorder.recordFile), "AudioFileCreateWithURL failed");
+        CFRelease(myFileURL);
     
-    // many encoded formats require a 'magic cookie'. we set the cookie first
-    // to give the file object as much info as we can about the data it will be receiving
-    [self copyEncoderCookieToFile: queue theFile:recorder.recordFile];
+        // many encoded formats require a 'magic cookie'. we set the cookie first
+        // to give the file object as much info as we can about the data it will be receiving
+        [self copyEncoderCookieToFile: queue theFile:_recorder.recordFile];
     
-    // allocate and enqueue buffers
-    //int bufferByteSize = MyComputeRecordBufferSize(&recordFormat, queue, 0.5);	// enough bytes for half a second
+        // allocate and enqueue buffers
+        //int bufferByteSize = MyComputeRecordBufferSize(&recordFormat, queue, 0.5);	// enough bytes for half a second
     
-    int bufferByteSize = [self computeRecordBufferSize:&recordFormat queue:queue seconds:0.5];	// enough bytes for half a second
-    int bufferIndex;
-    for (bufferIndex = 0; bufferIndex < kNumberRecordBuffers; ++bufferIndex)
-    {
-        AudioQueueBufferRef buffer;
-        CheckError(AudioQueueAllocateBuffer(queue, bufferByteSize, &buffer),
+        int bufferByteSize = [self computeRecordBufferSize:&recordFormat queue:queue seconds:0.5];	// enough bytes for half a second
+        int bufferIndex;
+        for (bufferIndex = 0; bufferIndex < kNumberRecordBuffers; ++bufferIndex)
+        {
+            AudioQueueBufferRef buffer;
+        
+            CheckError(AudioQueueAllocateBuffer(queue, bufferByteSize, &buffer),
                    "AudioQueueAllocateBuffer failed");
-        CheckError(AudioQueueEnqueueBuffer(queue, buffer, 0, NULL),
+            CheckError(AudioQueueEnqueueBuffer(queue, buffer, 0, NULL),
                    "AudioQueueEnqueueBuffer failed");
+        }
+    
+        // start the queue. this function return immedatly and begins
+        // invoking the callback, as needed, asynchronously.
+        _recorder.running = TRUE;
+        CheckError(AudioQueueStart(queue, NULL), "AudioQueueStart failed");
+    
+        
     }
     
-    // start the queue. this function return immedatly and begins
-    // invoking the callback, as needed, asynchronously.
-    recorder.running = TRUE;
-    CheckError(AudioQueueStart(queue, NULL), "AudioQueueStart failed");
-    
+    return self;
+
+}
+
+
+-(void)stopRecording{
     // and wait
     printf("Recording, press <return> to stop:\n");
     getchar();
     
     // end recording
     printf("* recording done *\n");
-    recorder.running = FALSE;
-    CheckError(AudioQueueStop(queue, TRUE), "AudioQueueStop failed");
+    _recorder.running = FALSE;
+    CheckError(AudioQueueStop(_queue, TRUE), "AudioQueueStop failed");
     
     // a codec may update its magic cookie at the end of an encoding session
     // so reapply it to the file now
-    [self copyEncoderCookieToFile:queue theFile:recorder.recordFile ];
-  
+    [self copyEncoderCookieToFile:_queue theFile:_recorder.recordFile ];
     
-        AudioQueueDispose(queue, TRUE);
-        AudioFileClose(recorder.recordFile);
     
-    }
+    AudioQueueDispose(_queue, TRUE);
+    AudioFileClose(_recorder.recordFile);
     
-    return self;
-
+    
 }
+
 
 
 #pragma mark AVAudioSession
@@ -205,7 +216,7 @@ static void MyAQInputCallback(void *inUserData, AudioQueueRef inQueue,
     NSError *error;
     
     // set the session category
-    bool success = [sessionInstance setCategory:AVAudioSessionCategoryPlayback error:&error];
+    bool success = [sessionInstance setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
     if (!success){
         NSLog(@"Error setting AVAudioSession category! %@\n", [error localizedDescription]);
         return NO;
