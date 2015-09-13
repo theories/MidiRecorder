@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SoundRecorder.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController{
+    SoundRecorder *_recorder;
+}
 
-
+-(void)destroy;
 @end
 

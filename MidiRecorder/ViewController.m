@@ -10,6 +10,8 @@
 
 @interface ViewController () <SoundRecorderDelegate>
 
+
+
 @end
 
 @implementation ViewController
@@ -17,14 +19,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    SoundRecorder *recorder = [[SoundRecorder alloc] init];
-    recorder.delegate = self;
-    
+    _recorder = [[SoundRecorder alloc] init];
+    _recorder.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
+
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    //[_recorder destroy];
+}
+
+- (void)didEnterBackground
+{
+    NSLog( @"Entering background now" );
+    [_recorder destroy];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)destroy{
+    NSLog(@"ViewController: destroy called");
+    [_recorder destroy];
 }
 
 @end
