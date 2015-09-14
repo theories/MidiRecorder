@@ -21,6 +21,10 @@
     // Do any additional setup after loading the view, typically from a nib.
     _recorder = [[SoundRecorder alloc] init];
     _recorder.delegate = self;
+    
+    [_startRecordButton setEnabled:YES];
+    [_stopRecordButton setEnabled:NO];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
 
 }
@@ -44,6 +48,21 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)startRecording:(id)sender{
+    [_startRecordButton setEnabled:NO];
+    [_stopRecordButton setEnabled:YES];
+    [_recorder startRecording];
+    //[_resumeButton setEnabled:NO];
+}
+
+
+- (IBAction)stopRecording:(id)sender{
+    [_startRecordButton setEnabled:YES];
+    [_stopRecordButton setEnabled:NO];
+    [_recorder stopRecording];
+    //[_resumeButton setEnabled:NO];
 }
 
 -(void)destroy{

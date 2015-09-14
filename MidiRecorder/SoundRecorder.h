@@ -106,6 +106,9 @@ static void MyAQInputCallback(void *inUserData, AudioQueueRef inQueue,
 @property (readwrite) Float64              graphSampleRate;
 //@property (readwrite) struct MyRecorder    recorder;
 
+- (void)startRecording;
+- (void)stopRecording;
+//- (void)resumeSequence;
 
 - (void)destroy;
 

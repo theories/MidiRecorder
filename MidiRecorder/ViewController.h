@@ -13,6 +13,17 @@
     SoundRecorder *_recorder;
 }
 
+
+
+@property (unsafe_unretained, nonatomic) IBOutlet UIButton *startRecordButton;
+@property (unsafe_unretained, nonatomic) IBOutlet UIButton *stopRecordButton;
+//@property (unsafe_unretained, nonatomic) IBOutlet UIButton *resumeButton;
+
+- (IBAction) startRecording:(id)sender;
+- (IBAction) stopRecording:(id)sender;
+//- (IBAction) resumeSequence:(id)sender;
+
 -(void)destroy;
+
 @end
 

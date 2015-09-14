@@ -29,7 +29,7 @@ AudioQueueRef _queue;
             return nil;
         }
         
-        [self initRecorder];
+        //[self initRecorder];
     
     }
     
@@ -40,7 +40,7 @@ AudioQueueRef _queue;
 - (void)destroy{
  
     NSLog(@"MidiRecorder: destroying...");
-    [self stopRecording:_queue];
+    [self stopRecording];
 }
 
 -(void)initRecorder{
@@ -131,39 +131,39 @@ AudioQueueRef _queue;
     }
     
     _queue = queue;
-    [self startRecording:_queue];
+    //[self startRecording];
 
 }
 
 
--(void)startRecording: (AudioQueueRef) queue{
+-(void)startRecording{
 
-    
+    [self initRecorder];
     // start the queue. this function return immedatly and begins
     // invoking the callback, as needed, asynchronously.
     _recorder.running = TRUE;
-    CheckError(AudioQueueStart(queue, NULL), "AudioQueueStart failed");
+    CheckError(AudioQueueStart(_queue, NULL), "AudioQueueStart failed");
+    // and wait
+    printf("Recording...:\n");
+    //getchar();
     
     
 }
 
 
--(void)stopRecording: (AudioQueueRef) queue{
-    // and wait
-    printf("Recording, press <return> to stop:\n");
-    getchar();
+-(void)stopRecording{
     
     // end recording
     printf("* recording done *\n");
     _recorder.running = FALSE;
-    CheckError(AudioQueueStop(queue, TRUE), "AudioQueueStop failed");
+    CheckError(AudioQueueStop(_queue, TRUE), "AudioQueueStop failed");
     
     // a codec may update its magic cookie at the end of an encoding session
     // so reapply it to the file now
-    [self copyEncoderCookieToFile:queue theFile:_recorder.recordFile ];
+    [self copyEncoderCookieToFile:_queue theFile:_recorder.recordFile ];
     
     
-    AudioQueueDispose(queue, TRUE);
+    AudioQueueDispose(_queue, TRUE);
     AudioFileClose(_recorder.recordFile);
     
     
