@@ -9,11 +9,79 @@
 #import "SoundRecorder.h"
 
 
+#pragma mark C Definitions
 
+#define kNumberRecordBuffers	3
+
+typedef struct MyRecorder {
+    AudioFileID					recordFile; // reference to your output file
+    SInt64						recordPacket; // current packet index in output file
+    Boolean						running; // recording state
+} MyRecorder;
+
+
+
+
+#pragma mark - C utility functions -
+
+// generic error handler - if error is nonzero, prints error message and exits program.
+static void CheckError(OSStatus error, const char *operation)
+{
+    if (error == noErr) return;
+    
+    char errorString[20];
+    // see if it appears to be a 4-char-code
+    *(UInt32 *)(errorString + 1) = CFSwapInt32HostToBig(error);
+    if (isprint(errorString[1]) && isprint(errorString[2]) && isprint(errorString[3]) && isprint(errorString[4])) {
+        errorString[0] = errorString[5] = '\'';
+        errorString[6] = '\0';
+    } else
+        // no, format it as an integer
+        sprintf(errorString, "%d", (int)error);
+    
+    fprintf(stderr, "Error: %s (%s)\n", operation, errorString);
+    
+    exit(1);
+}
+
+#pragma mark - audio queue -
+
+// Audio Queue callback function, called when an input buffer has been filled.
+static void MyAQInputCallback(void *inUserData, AudioQueueRef inQueue,
+                              AudioQueueBufferRef inBuffer,
+                              const AudioTimeStamp *inStartTime,
+                              UInt32 inNumPackets,
+                              const AudioStreamPacketDescription *inPacketDesc)
+{
+    MyRecorder *recorder = (MyRecorder *)inUserData;
+    
+    // if inNumPackets is greater then zero, our buffer contains audio data
+    // in the format we specified (AAC)
+    if (inNumPackets > 0)
+    {
+        // write packets to file
+        CheckError(AudioFileWritePackets(recorder->recordFile, FALSE, inBuffer->mAudioDataByteSize,
+                                         inPacketDesc, recorder->recordPacket, &inNumPackets,
+                                         inBuffer->mAudioData), "AudioFileWritePackets failed");
+        // increment packet index
+        recorder->recordPacket += inNumPackets;
+    }
+    
+    // if we're not stopping, re-enqueue the buffer so that it gets filled again
+    if (recorder->running)
+        CheckError(AudioQueueEnqueueBuffer(inQueue, inBuffer,
+                                           0, NULL), "AudioQueueEnqueueBuffer failed");
+}
+
+
+#pragma mark END C Definitions
+
+
+#pragma mark SoundRecorder
 
 @implementation SoundRecorder
 
-MyRecorder  _recorder;
+struct MyRecorder  _recorder;
 AudioQueueRef _queue;
 
 //@synthesize recorder            = _recorder;
@@ -28,6 +96,7 @@ AudioQueueRef _queue;
             NSLog(@"Error creating AVAudioSession");
             return nil;
         }
+        
         
         //[self initRecorder];
     
@@ -45,6 +114,7 @@ AudioQueueRef _queue;
 
 -(void)initRecorder{
 
+    
     //MyRecorder recorder = {0};
     //MyRecorder theRecorder = {0};// = _recorder;
     //theRecorder = {0};
@@ -73,6 +143,8 @@ AudioQueueRef _queue;
     UInt32 propSize = sizeof(recordFormat);
     CheckError(AudioFormatGetProperty(kAudioFormatProperty_FormatInfo, 0, NULL,
                                       &propSize, &recordFormat), "AudioFormatGetProperty failed");
+    
+    _queue = NULL;
     
     // create a input (recording) queue
     AudioQueueRef queue = {0};
@@ -153,6 +225,13 @@ AudioQueueRef _queue;
 
 -(void)stopRecording{
     
+    //if(_recorder !== 0){
+        if(!_recorder.running)
+        {
+            NSLog(@"StopRecorder->Recorder not running. Exiting...");
+            return;
+        }
+    //}
     // end recording
     printf("* recording done *\n");
     _recorder.running = FALSE;
@@ -165,6 +244,8 @@ AudioQueueRef _queue;
     
     AudioQueueDispose(_queue, TRUE);
     AudioFileClose(_recorder.recordFile);
+    _recorder.recordPacket = 0;
+    _queue = NULL;
     
     
 }
