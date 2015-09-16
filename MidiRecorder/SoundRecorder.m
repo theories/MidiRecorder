@@ -259,35 +259,35 @@ AVAudioPlayer *_musicPlayer;
 
 -(void)playRecording{
    
+    
+    if(_musicPlayer){
+        _musicPlayer = nil;
+    }
+    
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"output.caf"];
-    
     NSURL *fileURL = [NSURL fileURLWithPath:filePath];
-    
 
-    //NSError *error;
-    _musicPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:nil];
+    NSError *error;
+    
+    _musicPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:fileURL error:&error];
+    
+    if(error != noErr){
+        NSLog(@"Error creating musicPlayer");
+        return;
+    }
     
     _musicPlayer.delegate = self;
-    
+
     [_musicPlayer prepareToPlay];
     [_musicPlayer play];
-                              
-    
-    //NSString *fileContent = [[NSString alloc] initWithContentsOfFile:filePath];
     
 }
 
 
-- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
-    
-    if ([self.delegate respondsToSelector:@selector(playerDone)]) {
-        [self.delegate playerDone];
-    }
 
-}
 
 
 #pragma mark AVAudioSession
@@ -353,6 +353,20 @@ AVAudioPlayer *_musicPlayer;
     
     return YES;
 }
+
+
+#pragma mark AVAudioPlayer delegate methods
+
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag{
+    
+    _musicPlayer = nil;
+    if ([self.delegate respondsToSelector:@selector(playerDone)]) {
+        [self.delegate playerDone];
+    }
+    
+}
+
+
 
 #pragma mark CoreAudio Helper Methods
 
