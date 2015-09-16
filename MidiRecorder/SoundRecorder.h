@@ -31,6 +31,8 @@
 - (void)engineWasInterrupted;
 - (void)engineConfigurationHasChanged;
 - (void)mixerOutputFilePlayerHasStopped;
+- (void)recordingDone;
+- (void)playerDone;
 
 @end
 
@@ -44,6 +46,7 @@
 
 - (void)startRecording;
 - (void)stopRecording;
+- (void)playRecording;
 //- (void)resumeSequence;
 
 - (void)destroy;

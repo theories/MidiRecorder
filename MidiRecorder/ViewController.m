@@ -24,6 +24,7 @@
     
     [_startRecordButton setEnabled:YES];
     [_stopRecordButton setEnabled:NO];
+    [_playRecordButton setEnabled:NO];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
 
@@ -53,6 +54,7 @@
 - (IBAction)startRecording:(id)sender{
     [_startRecordButton setEnabled:NO];
     [_stopRecordButton setEnabled:YES];
+    [_playRecordButton setEnabled:NO];
     [_recorder startRecording];
     //[_resumeButton setEnabled:NO];
 }
@@ -65,9 +67,32 @@
     //[_resumeButton setEnabled:NO];
 }
 
+- (IBAction)playRecording:(id)sender{
+    NSLog(@"playRecording() called");
+    [_playRecordButton setEnabled:NO];
+    [_stopRecordButton setEnabled:NO];
+    [_startRecordButton setEnabled:NO];
+    [_recorder playRecording];
+}
+
+#pragma mark delegate methods
+- (void)recordingDone{
+
+    NSLog(@"ViewController->recordingDone() called");
+    [_playRecordButton setEnabled:YES];
+}
+
+- (void)playerDone{
+    [_startRecordButton setEnabled:YES];
+    [_stopRecordButton setEnabled:NO];
+    [_playRecordButton setEnabled:YES];
+}
+
+
 -(void)destroy{
     NSLog(@"ViewController: destroy called");
     [_recorder destroy];
+    
 }
 
 @end
