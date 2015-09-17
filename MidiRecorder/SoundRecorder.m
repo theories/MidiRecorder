@@ -147,7 +147,7 @@ AVAudioPlayer *_musicPlayer;
     CheckError(AudioFormatGetProperty(kAudioFormatProperty_FormatInfo, 0, NULL,
                                       &propSize, &recordFormat), "AudioFormatGetProperty failed");
     
-    _queue = NULL;
+    _queue = nil;
     
     // create a input (recording) queue
     AudioQueueRef queue = {0};
@@ -235,6 +235,23 @@ AVAudioPlayer *_musicPlayer;
             return;
         }
     //}
+    
+    /*
+     write instrumentchunk
+     see 
+     https://developer.apple.com/library/mac/documentation/MusicAudio/Reference/CAFSpec/CAF_spec/CAF_spec.html#//apple_ref/doc/uid/TP40001862-CH210-BCGJIDHD
+    */
+    //use AudioFileSetUserData
+    CAFInstrumentChunk iChunk = {0};
+    iChunk.mBaseNote = 60;
+    iChunk.mMIDILowNote = 0;
+    iChunk.mMIDIHighNote = 127;
+    iChunk.mdBGain = 0;
+    iChunk.mMIDILowVelocity = 127;
+    iChunk.mMIDIHighVelocity = 127;
+    
+    //iChunk.
+    
     // end recording
     printf("* recording done *\n");
     _recorder.running = FALSE;
