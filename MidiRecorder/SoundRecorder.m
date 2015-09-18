@@ -236,11 +236,31 @@ AVAudioPlayer *_musicPlayer;
         }
     //}
     
+    // end recording
+    printf("* recording done *\n");
+    _recorder.running = FALSE;
+    CheckError(AudioQueueStop(_queue, TRUE), "AudioQueueStop failed");
+    
+  
+    
     /*
      write instrumentchunk
-     see 
+     see
      https://developer.apple.com/library/mac/documentation/MusicAudio/Reference/CAFSpec/CAF_spec/CAF_spec.html#//apple_ref/doc/uid/TP40001862-CH210-BCGJIDHD
+     */
+    
+    
+    /*
+     
+     Apparently, there's no need to set the header
+     */
+    
+    /*
+    CAFChunkHeader hdr;
+    hdr.mChunkType = kCAF_InstrumentChunkID;
+    hdr.mChunkSize = sizeof(CAFInstrumentChunk);
     */
+    
     //use AudioFileSetUserData
     CAFInstrumentChunk iChunk = {0};
     iChunk.mBaseNote = 60;
@@ -250,12 +270,29 @@ AVAudioPlayer *_musicPlayer;
     iChunk.mMIDILowVelocity = 127;
     iChunk.mMIDIHighVelocity = 127;
     
-    //iChunk.
+    UInt32 chunkSize;
     
-    // end recording
-    printf("* recording done *\n");
-    _recorder.running = FALSE;
-    CheckError(AudioQueueStop(_queue, TRUE), "AudioQueueStop failed");
+    chunkSize = sizeof(iChunk);
+    
+    /*
+     
+     AudioFileSetUserData ( AudioFileID			inAudioFile,
+     UInt32				inUserDataID,
+     UInt32				inIndex,
+     UInt32				inUserDataSize,
+     const void			*inUserData)					__OSX_AVAILABLE_STARTING(__MAC_10_4,__IPHONE_2_0);
+     
+     */
+    
+    
+    OSStatus chunkResult = noErr;
+    
+    chunkResult = AudioFileSetUserData(_recorder.recordFile, kCAF_InstrumentChunkID, 0, chunkSize, &iChunk);
+    if(chunkResult != noErr){
+        NSLog(@"Could not set instrument chunk data");
+    }
+    
+
     
     // a codec may update its magic cookie at the end of an encoding session
     // so reapply it to the file now
