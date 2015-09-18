@@ -263,11 +263,11 @@ AVAudioPlayer *_musicPlayer;
     
     //use AudioFileSetUserData
     CAFInstrumentChunk iChunk = {0};
-    iChunk.mBaseNote = 60;
+    iChunk.mBaseNote = 30.0;
     iChunk.mMIDILowNote = 0;
     iChunk.mMIDIHighNote = 127;
     iChunk.mdBGain = 0;
-    iChunk.mMIDILowVelocity = 127;
+    iChunk.mMIDILowVelocity = 0;
     iChunk.mMIDIHighVelocity = 127;
     
     UInt32 chunkSize;
