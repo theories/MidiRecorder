@@ -90,10 +90,13 @@ AudioQueueRef _queue;
 AVAudioPlayer *_musicPlayer;
 
 @synthesize graphSampleRate     = _graphSampleRate;
+@synthesize recordingExists     = _recordingExists;
 
 - (instancetype)init
 {
     if (self = [super init]) {
+        
+        self.recordingExists = NO;
         
         if(![self initAVAudioSession]){
             NSLog(@"Error creating AVAudioSession");
@@ -171,7 +174,7 @@ AVAudioPlayer *_musicPlayer;
     CheckError(AudioQueueGetProperty(queue, kAudioConverterCurrentOutputStreamDescription,
                                      &recordFormat, &size), "couldn't get queue's format");
     
-    
+    /*
     NSArray *searchPaths =NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentPath_ = [searchPaths objectAtIndex: 0];
     NSString *pathToSave = [documentPath_ stringByAppendingPathComponent:@"output.caf"];
@@ -179,6 +182,10 @@ AVAudioPlayer *_musicPlayer;
     
     // create the audio file
     CFURLRef myFileURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (__bridge CFStringRef)pathToSave, kCFURLPOSIXPathStyle, false);
+     
+     */
+    
+    CFURLRef myFileURL = [self getAudioFileURL];
     CFShow (myFileURL);
     CheckError(AudioFileCreateWithURL(myFileURL, kAudioFileCAFType, &recordFormat,
                                       kAudioFileFlags_EraseFile, &_recorder.recordFile), "AudioFileCreateWithURL failed");
@@ -308,6 +315,8 @@ AVAudioPlayer *_musicPlayer;
         [self.delegate recordingDone];
     }
     
+    CFURLRef myFileURL = [self getAudioFileURL];
+    //[myFileURL pa]
     
 }
 
@@ -481,6 +490,23 @@ AVAudioPlayer *_musicPlayer;
         bytes = packets * maxPacketSize;				// 6
     }
     return bytes;
+
+}
+
+#pragma mark helper functions
+
+- (CFURLRef) getAudioFileURL{
+
+
+    NSArray *searchPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentPath_ = [searchPaths objectAtIndex: 0];
+    NSString *pathToSave = [documentPath_ stringByAppendingPathComponent:@"output.caf"];
+    
+    // create the audio file
+    CFURLRef myFileURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (__bridge CFStringRef)pathToSave, kCFURLPOSIXPathStyle, false);
+    CFShow (myFileURL);
+    
+    return myFileURL;
 
 }
 

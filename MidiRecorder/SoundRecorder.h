@@ -42,6 +42,8 @@
 @property (weak) id<SoundRecorderDelegate> delegate;
 
 @property (readwrite) Float64              graphSampleRate;
+@property (readwrite) BOOL                 recordingExists;
+
 //@property (readwrite) struct MyRecorder    recorder;
 
 - (void)startRecording;
