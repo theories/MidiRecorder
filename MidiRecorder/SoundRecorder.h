@@ -49,6 +49,7 @@
 - (void)startRecording;
 - (void)stopRecording;
 - (void)playRecording;
+- (BOOL)checkRecordingExists;
 //- (void)resumeSequence;
 
 - (void)destroy;

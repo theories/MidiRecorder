@@ -24,7 +24,7 @@
     
     [_startRecordButton setEnabled:YES];
     [_stopRecordButton setEnabled:NO];
-    [_playRecordButton setEnabled:NO];
+    [_playRecordButton setEnabled:[_recorder checkRecordingExists]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didEnterBackground) name:UIApplicationDidEnterBackgroundNotification object:nil];
 

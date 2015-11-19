@@ -311,12 +311,13 @@ AVAudioPlayer *_musicPlayer;
     _recorder.recordPacket = 0;
     _queue = NULL;
     
+    [self checkRecordingExists];
+    
     if ([self.delegate respondsToSelector:@selector(recordingDone)]) {
         [self.delegate recordingDone];
     }
     
-    CFURLRef myFileURL = [self getAudioFileURL];
-    //[myFileURL pa]
+   
     
 }
 
@@ -508,6 +509,18 @@ AVAudioPlayer *_musicPlayer;
     
     return myFileURL;
 
+}
+
+- (BOOL) checkRecordingExists{
+
+    NSError *err;
+    NSURL *myFileURL = (NSURL*)[self getAudioFileURL];
+    [myFileURL checkResourceIsReachableAndReturnError:&err];
+    self.recordingExists = (err == noErr);
+    
+    NSLog(@"Recording exists %d", self.recordingExists);
+    
+    return self.recordingExists;
 }
 
 
