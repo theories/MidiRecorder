@@ -389,6 +389,15 @@ AVAudioPlayer *_musicPlayer;
     }
     
     
+    // activate the audio session
+    success = [sessionInstance setActive:YES error:&error];
+    if (!success){ NSLog(@"Error setting session active! %@\n", [error localizedDescription]);
+        return NO;
+    }
+    
+    self.graphSampleRate = [sessionInstance sampleRate];
+    
+    
     // add interruption handler
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(handleInterruption:)
@@ -407,13 +416,6 @@ AVAudioPlayer *_musicPlayer;
                                                object:sessionInstance];
     
     
-    // activate the audio session
-    success = [sessionInstance setActive:YES error:&error];
-    if (!success){ NSLog(@"Error setting session active! %@\n", [error localizedDescription]);
-        return NO;
-    }
-    
-    self.graphSampleRate = [sessionInstance sampleRate];
     
     return YES;
 }

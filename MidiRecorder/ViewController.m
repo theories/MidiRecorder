@@ -37,7 +37,8 @@
 - (void)didEnterBackground
 {
     NSLog( @"Entering background now" );
-    [_recorder stopRecording];
+    //[_recorder stopRecording];
+    [self stopRecording:nil];
 }
 
 -(void)dealloc
