@@ -12,14 +12,14 @@
 #include <AudioToolbox/AudioToolbox.h>
 #include <Availability.h>
 #include <CoreFoundation/CoreFoundation.h>
-#include <AudioUnit/MusicDevice.h>
+//#include <AudioUnit/MusicDevice.h>
 #include <AudioToolbox/AUGraph.h>
 #include <CoreMIDI/MIDIServices.h>
 
 //#import <AudioToolbox/MusicPlayer.h>
 #import <CoreAudio/CoreAudioTypes.h>
 #import <AVFoundation/AVFoundation.h>
-#import <AudioUnit/AudioUnitProperties.h>
+//#import <AudioUnit/AudioUnitProperties.h>
 #import <Accelerate/Accelerate.h>
 //#include <CoreAudio/CoreAudioTypes.h>
 
